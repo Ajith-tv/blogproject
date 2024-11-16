@@ -161,7 +161,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed" sx={{  zIndex: 1100 }}>
 
            <Toolbar>
           <IconButton
