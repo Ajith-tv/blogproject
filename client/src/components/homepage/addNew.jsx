@@ -46,7 +46,7 @@ const AddNew = ({ onClose }) => {
       images.forEach((item) => formData.append("images", item)); // appending image files
       console.log(formData.title);
 
-      AXIOS.post("http://localhost:8000/activity/addActivty", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(result => {
+      AXIOS.post("https://blogproject-backend-5naj.onrender.com/activity/addActivty", formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(result => {
         // console.log(result);
         alert(result.data.msg);
         onClose();

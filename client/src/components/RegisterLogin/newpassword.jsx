@@ -47,7 +47,7 @@ const Newpassword = () => {
       
     
         //console.log('this',data);
-        const url ='http://localhost:8000/user/newpassword'
+        const url ='https://blogproject-backend-5naj.onrender.com/newpassword'
         AXIOS.put(url,data).then(res=>{
                
             if(res.data.status == 1){

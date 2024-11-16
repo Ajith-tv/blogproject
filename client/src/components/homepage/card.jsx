@@ -28,7 +28,7 @@ export default function Cards({ data }) {
             userid: userdata.email
         }
 
-        AXIOX.put("http://localhost:8000/activity/join", neededdat).then(result => {
+        AXIOX.put("https://blogproject-backend-5naj.onrender.com/activity/join", neededdat).then(result => {
             alert(result.data.msg)
         }).catch(err => {
             alert(err.response.dat.msg)

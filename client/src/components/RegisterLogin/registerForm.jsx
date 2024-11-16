@@ -45,7 +45,7 @@ const RegisterForm = () => {
         data.role='customer'
         e.preventDefault()
       //  console.log('this',data);
-        const url ='http://localhost:8000/user/register'
+        const url ='https://blogproject-backend-5naj.onrender.com/user/register'
         AXIOS.post(url,data).then(res=>{
        console.log('maillll',res.data);
         if(res.data.status ==1 ){

@@ -50,7 +50,7 @@ const Passwordchangeotp = ({length=4}) => {
    
     const handlesubmit=()=>{
         const newotp=otp.join("")
-          AXIOS.post('http://localhost:8000/user/OTPverifypass' ,{userotp:newotp,token:sessionStorage.getItem('token')}).then(result=>{
+          AXIOS.post('https://blogproject-backend-5naj.onrender.com/user/OTPverifypass' ,{userotp:newotp,token:sessionStorage.getItem('token')}).then(result=>{
           //  console.log(result);
 
           
