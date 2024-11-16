@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link'
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -16,6 +17,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Container } from '@mui/material';
+import { Login, Logout } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -32,6 +34,7 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -60,6 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const user = localStorage.getItem('login')
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -71,6 +75,13 @@ export default function Navbar() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('login');
+    localStorage.removeItem('token');
+    handleClose();
+    nav('/')
+};
 
   const handleMenuClose = () => {
     setAnchorEl(null);
@@ -99,7 +110,10 @@ export default function Navbar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {user? (
+                        <MenuItem onClick={handleLogout} >Logout <Logout sx={{ marginLeft: '10px' }} /></MenuItem> ) : (
+                                    <MenuItem > <Link href="/userreg/login" >Login <Login sx={{ marginLeft: '10px' }} /></Link></MenuItem>
+                                )}
     </Menu>
   );
 
@@ -134,6 +148,14 @@ export default function Navbar() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+
+      {user? (
+                        <MenuItem onClick={handleLogout} >Logout <Logout sx={{ marginLeft: '10px' }} /></MenuItem> ) : (
+                                    <MenuItem > <Link href="/userreg/login" >Login <Login sx={{ marginLeft: '10px' }} /></Link></MenuItem>
+                                )}
+            
+      
+
     </Menu>
   );
 

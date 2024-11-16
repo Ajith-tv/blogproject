@@ -1,0 +1,25 @@
+.otpinput{
+    width: 50px;
+    height: 60px;
+    margin: 5px;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: rgba(21, 3, 61, 0);
+    /* border: 1px solid white; */
+    
+    border-radius: 5px;
+    color: rgb(36, 129, 17);
+    
+
+}
+.otpinput:focus{
+    width:55px;
+    height :65px;
+    border : rgb(13, 153, 81);
+}
+
+.inerror{
+    border: 1px solid red;
+    color: red;
+
+}
