@@ -17,6 +17,7 @@ import AXIOX from 'axios'
 export default function Cards({ data }) {
     const theme = useTheme();
     const token = localStorage.getItem('token')
+    
     const userdata = jwtDecode(token)
     console.log(userdata.UserName);
 
