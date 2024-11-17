@@ -18,6 +18,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { Container } from '@mui/material';
 import { Login, Logout } from '@mui/icons-material';
+import Siderdrawer from '../homepage/sidedrawer';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -64,7 +65,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const user = localStorage.getItem('login')
-
+  const [open, setOpen] = React.useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -75,7 +76,9 @@ export default function Navbar() {
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
   const handleLogout = () => {
     localStorage.removeItem('login');
     localStorage.removeItem('token');
@@ -164,12 +167,14 @@ export default function Navbar() {
       <AppBar position="fixed" sx={{  zIndex: 1100 }}>
 
            <Toolbar>
+
           <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, display:{xs:'block',md:'none'}}}
+            onClick={toggleDrawer(true)} 
           >
             <MenuIcon />
           </IconButton>
@@ -224,6 +229,7 @@ export default function Navbar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      <Siderdrawer open={open} toggleDrawer={toggleDrawer}/>
     </Box>
   );
 }

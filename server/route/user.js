@@ -131,6 +131,7 @@ Router.post('/OTPverify',async(req,res,next)=>{
 
 
 Router.post('/login',(req,res,next)=>{
+      console.log('ahh?');
       
     const erorrarray={};
 
@@ -139,7 +140,7 @@ Router.post('/login',(req,res,next)=>{
         erorrarray.email=validate.validateEmail(req.body.email)[1]
     }
     if(!validate.passwordval('password' ,req.body.Password)[0]){
-        erorrarray.password = validate.passwordval('password' ,req.body.Password)[1]
+        erorrarray.Password = validate.passwordval('password' ,req.body.Password)[1]
     }
 
     const objlength =Object.keys(erorrarray).length

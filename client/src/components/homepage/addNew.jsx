@@ -1,7 +1,7 @@
 import { Box, Button, Divider, FormControl, IconButton, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import CloseIcon from '@mui/icons-material/Close';
-import { Delete, Upload } from '@mui/icons-material';
+
+import { Close, Delete, Upload } from '@mui/icons-material';
 import AXIOS from 'axios'
 
 const AddNew = ({ onClose }) => {
@@ -119,7 +119,7 @@ const AddNew = ({ onClose }) => {
           </Typography>
 
           <IconButton aria-label="close" sx={{ position: 'absolute', top: 0, right: 2 }} onClick={() => onClose()}>
-            <CloseIcon />
+            <Close />
           </IconButton>
 
         </Box>

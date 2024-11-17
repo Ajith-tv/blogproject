@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Stack } from '@mui/material';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import Sidebar from './sidebar';
 import Feed from './feed';
 import Rightbar from './rightbar';
@@ -9,8 +9,11 @@ import { fetchActivities } from '../../redux/activityslice';
 
 const Landingpage = () => {
   const status = useSelector((state) => state.activities.status);
-  const token = localStorage.getItem('token'); // Check if token exists in localStorage
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
+  const theme = useTheme();
+
+  const isXsScreen = useMediaQuery(theme.breakpoints.down('md')); // Check if the screen size is xs
 
   useEffect(() => {
     if (status === 'idle' && token) {
@@ -20,16 +23,17 @@ const Landingpage = () => {
   }, [status, dispatch, token]);
 
   return (
-    <Stack 
-      spacing={2} 
-      direction="row" 
-      width="100%" 
-      justifyContent="space-between" 
+    <Stack
+      spacing={2}
+      direction="row"
+      width="100%"
+      justifyContent="space-between"
       sx={{ mt: 10 }}
     >
-      <Sidebar />
-      {token ? <Feed /> : <Notlogin />}
-      <Rightbar />
+      
+      {!isXsScreen && <Sidebar />} 
+      <Feed />
+      {!isXsScreen &&  <Rightbar />}
     </Stack>
   );
 };

@@ -4,21 +4,19 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { jwtDecode } from 'jwt-decode';
 import { Button } from '@mui/material';
 import AXIOX from 'axios'
 
+import {useNavigate} from 'react-router-dom'
 
 export default function Cards({ data }) {
+    const nav =useNavigate()
     const theme = useTheme();
     const token = localStorage.getItem('token')
     
-    const userdata = jwtDecode(token)
+    const userdata = token ? jwtDecode(token) : null;
     console.log(userdata.UserName);
 
     const handlejoin = () => {
@@ -37,12 +35,13 @@ export default function Cards({ data }) {
     }
 
     return (
-        <Card
+        <Card onClick={()=>nav(`/activity/${data._id}`)}
             sx={{
                 display: 'flex',
                 width: '100%',
                 height: '200px', // Fixed height for consistent design
             }}
+            
         >
             {/* Card Content Area */}
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%' }}>
@@ -59,9 +58,15 @@ export default function Cards({ data }) {
                     </Typography>
                 </CardContent>
                 <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                {!data.members.includes(userdata.email) && data.userid !== userdata.email && (
-  <Button onClick={handlejoin}>Join</Button>
+                {token ? (
+  !data.members.includes(userdata?.email) &&
+  data.userid !== userdata?.email ? (
+    <Button onClick={handlejoin}>Join</Button>
+  ) :null
+) : (
+  <Button onClick={() => alert('Please log in to join!')}>Login to Join</Button>
 )}
+
                 </Box> 
             </Box>
 

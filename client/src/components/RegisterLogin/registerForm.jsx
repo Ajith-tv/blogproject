@@ -51,7 +51,7 @@ const RegisterForm = () => {
         if(res.data.status ==1 ){
           
           sessionStorage.setItem('token',res.data.token)
-          nav('/otp')
+          nav('/userreg/otp')
         }else{
           setValdata({email:'invalid email'})
         }

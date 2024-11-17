@@ -8,7 +8,7 @@ const Feed = () => {
 
 
   return (
-    <Box flex={4} p={2}>
+    <Box flex={4} p={2} >
       <Box pt={15} pb={10}>
         <Typography variant='h1' fontSize={{ xs: 30, sm: 50 }} >What's New?</Typography>
       </Box>
